@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.miclink"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="21" />
+
+    <uses-feature android:name="android.hardware.microphone" android:required="true" />
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+
+    <!-- RECORD_AUDIO: create the OpenSL ES audio recorder.
+         MODIFY_AUDIO_SETTINGS: needed to select routing/streams like the
+         voice-communication preset used for echo cancellation.
+         BLUETOOTH: needed for startBluetoothSco()/stopBluetoothSco() (the
+         Bluetooth output option; the app works without a Bluetooth radio,
+         it just can't offer that one output choice).
+         targetSdkVersion 21 means all three are granted automatically at
+         install time on every Android version (see MainActivity). -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <application
+        android:label="Mic-Speaker Bridge"
+        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true">
+        <activity
+            android:name="com.example.miclink.MainActivity"
+            android:label="Mic-Speaker Bridge"
+            android:screenOrientation="portrait"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
